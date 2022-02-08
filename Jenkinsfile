@@ -28,7 +28,17 @@ pipeline {
 			echo 'Project packaging stage'
 			bat label: 'Project packaging', script: '''mvn package'''
 		}
-	} 		
+	} 
+	
+	stage('SonarQube'){
+		steps{
+				bat label: '', script: '''mvn sonar:sonar \
+				-Dsonar.host.url=http://localhost:9000 \
+				-Dsonar.login=cc8d470e077d8ff83a626d6100581fc224644196'''
+			}
+   		}
+
+			
     
   }
 }
